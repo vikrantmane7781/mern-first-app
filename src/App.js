@@ -1,25 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-
+import PostMessages from './components/PostMessages';
+import { Provider } from 'react-redux';
+import { store } from './actions/store';
+import { Container, AppBar, Typography } from '@material-ui/core';
+import ButterToast, { POS_RIGHT, POS_TOP } from 'butter-toast';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <Container maxWidth='lg'>
+        <div className="App">
+          <AppBar position="static" color="inherit">
+            <Typography
+              variant="h2"
+              align="center"
+            >
+              All box
+            </Typography>
+          </AppBar>
+          <PostMessages />
+        </div>
+        <ButterToast position={{ vertical: POS_TOP, horizontal: POS_RIGHT }} />
+      </Container>
+    </Provider>
   );
 }
 
